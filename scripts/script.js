@@ -6,95 +6,166 @@ const inputData = document.getElementById("data");
 
 const saida = document.getElementById("saida");
 const total = document.getElementById("total");
+const cardEntradaSpan = document.getElementById("entrada");
+
+document.addEventListener("DOMContentLoaded", function () {
+    mostraMensagemStatus();
+});
 
 function concluir() {
-    campoVazio();
     registraTransacao();
-    mostarDadosNaTabela();
+    mostraMensagemStatus();
+    
 }
 
-function campoVazio() {
-    const descricao = inputDescricao.value.trim();
-    const valor = inputValor.value.trim();
-    const data = inputData.value.trim();
+function limpaCampo() {
+  setTimeout(()=>{
+      inputValor.value = "";
+      inputDescricao.value = "";
+      inputData.value = ""
 
-    if (descricao === "" || valor === "" || data === "") {
-        mudaCorOutline("red");
-        mensagem.textContent = "*Preencha todos os campos*";
-        mensagem.style.color = "red";
-        setTimeout(() => {
-            mensagem.textContent = "";
-            mudaCorOutline("transparent");
-        }, 2000);
+  },1000)
+}
+
+const mensagemStatus = document.getElementById("msg-status-user");
+
+function mostraMensagemStatus() {
+    const valorEntradaAtual = parseFloat(cardEntradaSpan.textContent);
+
+    const porcentagemDeGastos = (saida / valorEntradaAtual) *100
+
+    if (valorEntradaAtual === 0) {
+        mensagemStatus.textContent =
+            "Olá, seja muito bem vindo! Insira um valor de entrada e comece a controlar os seus gastos.";
+        mensagemStatus.style.fontSize = "0.6em ";
         return;
     } else {
-        mudaCorOutline("green");
-        mensagem.textContent = "Controle inserido com sucesso!";
-        mensagem.style.color = "green";
-        setTimeout(() => {
-            mudaCorOutline("transparent");
-            mensagem.textContent = "";
-        }, 1000);
-        return;
+        mensagemStatus.textContent = "vamos lá!";
     }
 }
 
 const camposEntrada = document.querySelectorAll("input");
 
-function mudaCorOutline(cor) {
-    camposEntrada.forEach((inputElemento) => {
-        inputElemento.style.outline = "solid 2px transparent";
-        inputElemento.style.outlineColor = cor;
-    });
-}
+const iconTipo = document.querySelector(".fa-solid");
 
-const valorEntrada = document.getElementById("entrada");
-
-const iconTipo = document.querySelector(".fa-solid")
+let totalEntradas = 0;
+let totalSaidas = 0;
+let totalGeral = 0;
 
 function registraTransacao() {
-    let totalEntradas = 0;
-    let totalSaidas = 0;
-    let totalGeral = 0;
-    const valor = parseFloat(inputValor.value.trim());
     const tipo = selectTipo.value;
-    if (valor <= 0) {
-        mensagem.textContent = "Insira um número válido";
+    const descricao = inputDescricao.value.trim();
+    const valor = parseFloat(inputValor.value.trim());
+    const data = inputData.value.trim();
+
+    if (descricao === "") {
+        inputDescricao.style.outline = "solid 2px transparent";
+        inputDescricao.style.outlineColor = "red";
+
+        inputValor.style.outline = "solid 2px transparent";
+        inputValor.style.outlineColor = "red";
+
+        inputData.style.outline = "solid 2px transparent";
+        inputData.style.outlineColor = "red";
+
+        mensagem.textContent = "*Preencha todos os campos*";
         mensagem.style.color = "red";
-        mudaCorOutline("red");
+        setTimeout(() => {
+            mensagem.textContent = "";
+            inputDescricao.style.outlineColor = "transparent";
+
+            inputValor.style.outlineColor = "transparent";
+
+            inputData.style.outlineColor = "transparent";
+        }, 2000);
+        return;
     }
 
+    if (valor <= 0 || isNaN(valor)) {
+        mensagem.textContent = "*Insira um valor*";
+        mensagem.style.color = "red";
+
+        inputValor.style.outline = "solid 2px transparent";
+        inputValor.style.outlineColor = "red";
+
+        inputData.style.outline = "solid 2px transparent";
+        inputData.style.outlineColor = "red";
+
+        setTimeout(() => {
+            mensagem.textContent = "";
+            inputValor.style.outlineColor = "transparent";
+
+            inputData.style.outlineColor = "transparent";
+        }, 2000);
+        return;
+    }
+
+    if (data === "") {
+        mensagem.textContent = "*Não é possível fazer um controle sem a data*";
+        mensagem.style.color = "red";
+
+        inputData.style.outline = "solid 2px transparent";
+        inputData.style.outlineColor = "red";
+
+        setTimeout(() => {
+            mensagem.textContent = "";
+            inputData.style.outlineColor = "transparent";
+        }, 2000);
+        return;
+    } else {
+        inputDescricao.style.outlineColor = "green";
+        inputValor.style.outlineColor = "green";
+        inputData.style.outlineColor = "green";
+
+        mensagem.textContent = "Controle inserido com sucesso!";
+        mensagem.style.color = "green";
+        limpaCampo();
+        setTimeout(() => {
+            inputDescricao.style.outlineColor = "transparent";
+            inputValor.style.outlineColor = "transparent";
+            inputData.style.outlineColor = "transparent";
+            mensagem.textContent = "";
+        }, 1000);
+    }
+
+    let iconTipo
+
     if (tipo === "entrada") {
+        iconTipo = "fa-solid fa-circle-arrow-up seta-entrada"
         totalEntradas += valor;
         totalGeral += valor;
-        iconTipo.classList.add("fa-circle-arrow-up")
+        cardEntradaSpan.textContent = totalEntradas.toFixed(2);
     } else if (tipo === "saida") {
+        iconTipo = "fa-solid fa-circle-arrow-down seta-saida"
         totalSaidas += valor;
         totalGeral -= valor;
     }
+    if (totalEntradas <= 0) {
+        cardEntradaSpan.style.color = "red";
+    } else {
+        cardEntradaSpan.style.color = "#000";
+    }
+    if (totalGeral <= 0) {
+        total.style.color = "red";
+    } else {
+        total.style.color = "#000";
+    }
 
-    valorEntrada.textContent = `Entradas R$: ${totalEntradas}`;
-    total.textContent = `Total R$: ${totalGeral}`;
-    saida.textContent = `Saída R$: ${totalSaidas}`;
-}
+    total.textContent = totalGeral.toFixed(2);
+    saida.textContent = totalSaidas.toFixed(2);
 
-function mostarDadosNaTabela() {
-    
-    const descricao = inputDescricao.value.trim();
-    const data = inputData.value.trim();
     let tbody = document.getElementById("corpo-tabela");
-    const valor = parseFloat(inputValor.value.trim());
 
-    tbody.innerHTML = `<tr>
+    tbody.innerHTML += `<tr>
                     <td>${descricao}</td>
-                        <td>${valor}</td>
+                        <td>R$ ${valor.toFixed(2)}</td>
                         <td>${data}</td>
                         <td>
+                      
                             <i
-                                class="fa-solid  seta-entrada"
+                                class="${iconTipo}"
                             ></i>
                         </td>
                         <td><i class="fa-solid fa-trash"></i></td>
                     </tr>`;
-                   
 }

@@ -74,11 +74,19 @@ text-align: center;
     width: 20px;
 }
 
+
+.selo-classificacao span{
+    background: #c90404;
+    width: 10px;
+    height: 80px;
+}
+
+
 .campos-entrada {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: end;
+    align-items: center;
     margin-bottom: 20px;
 }
 
@@ -95,31 +103,50 @@ text-align: center;
     flex-direction: column;
 }
 
-.descricao {
-    width: 25%;
+.descricao, .valor, .data {
+    width: 20%;
 }
 
-.valor {
-    width: 15%;
+.tipo-e-btn{
+    width: 20%;
+    display: flex;
+    align-items:end ;
+    gap: 10px;
 }
 
-.data {
-    width: 10%;
+.div-tipo{
+    width: 40%;
 }
 
-.div-tipo {
-    width: 10%;
+select{
+      border: solid 1px #cfcfcf;
+    border-radius: 10px;
+    padding: 10px 2px;
+}
+
+
+button {
+    width: 60%;
+    height: 39.2px;
+    border-radius: 10px;
+    border: none;
+    background: #1ba7fe;
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 4px 4px 4px #767676;
+    cursor: pointer;
 }
 
 #tipo {
     cursor: pointer;
+    width: 100%;
 }
 
-input,
-select {
+input {
     padding: 10px;
     border: solid 1px #cfcfcf;
     border-radius: 10px;
+    width: 100%;
 
     box-shadow: 4px 4px 4px #767676;
 }
@@ -132,18 +159,13 @@ select:focus {
 label {
     margin-left: 10px;
 }
+/* 
+.btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+} */
 
-button {
-    width: 100px;
-    height: 39.2px;
-    border-radius: 10px;
-    border: none;
-    background: #1ba7fe;
-    color: #fff;
-    font-weight: 600;
-    box-shadow: 4px 4px 4px #767676;
-    cursor: pointer;
-}
 
 table {
     width: 100%;

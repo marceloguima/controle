@@ -18,22 +18,19 @@
         <main>
             <div class="saldo-resumo">
                 <div class="entrada">
-                    <p id="entrada"></p>
-                   
+                     <p>Entrada: R$ <span id="entrada">0.0</span></p>
                 </div>
 
                 <div class="saida">
-                    <p id="saida"></p>
-                  
+                    <p>Saída: R$ <span id="saida">0.0</span></p>
                 </div>
                 <div class="total">
-                    <p id="total"></p>
-                    
+                      <p>Total: R$ <span id="total">0.0</span></p>
                 </div>
                 <div class="selo-classificacao">
-                    <p>Parabéns você controla muito bem suas finanças!
-                    </p>
-                    <img src="./img/image.png" alt="">
+                    <p id="msg-status-user"></p>
+                    <img src="./img/image.png" alt="" />
+         
                 </div>
             </div>
 
@@ -55,15 +52,16 @@
                     <input type="date" id="data" />
                 </div>
 
-                <div class="div-tipo">
-                    <label for="tipo">Tipo</label>
-                    <select name="tipo" id="tipo">
-                        <option value="entrada">Entrada</option>
-                        <option value="saida">Saída</option>
-                    </select>
+                <div class="tipo-e-btn">
+                    <div class="div-tipo">
+                        <label for="tipo">Tipo</label>
+                        <select name="tipo" id="tipo">
+                            <option value="entrada">Entrada</option>
+                            <option value="saida">Saída</option>
+                        </select>
+                    </div>
+                    <button onclick="concluir()">Concluir</button>
                 </div>
-
-                <button onclick="concluir()">Concluir</button>
             </div>
 
             <table>
