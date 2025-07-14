@@ -14,43 +14,57 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function concluir() {
     registraTransacao();
-    mostraMensagemStatus();
-    
 }
 
 function limpaCampo() {
-  setTimeout(()=>{
-      inputValor.value = "";
-      inputDescricao.value = "";
-      inputData.value = ""
-
-  },1000)
+    setTimeout(() => {
+        inputValor.value = "";
+        inputDescricao.value = "";
+        inputData.value = "";
+    }, 1000);
 }
 
-const mensagemStatus = document.getElementById("msg-status-user");
+let totalEntradas = 0;
+let totalSaidas = 0;
+let totalGeral = 0;
+const cardClasificacao = document.querySelector(".selo-classificacao");
 
 function mostraMensagemStatus() {
+    const mensagemStatus = document.getElementById("msg-status-user");
     const valorEntradaAtual = parseFloat(cardEntradaSpan.textContent);
 
-    const porcentagemDeGastos = (saida / valorEntradaAtual) *100
+    // const porcentagemDeGastos = (saida / valorEntradaAtual) * 100;
 
-    if (valorEntradaAtual === 0) {
+    // aqui ok-----------------------------------
+    if (valorEntradaAtual === 0 && totalGeral === 0 && totalSaidas === 0) {
         mensagemStatus.textContent =
-            "Olá, seja muito bem vindo! Insira um valor de entrada e comece a controlar os seus gastos.";
+            "Olá, 👍 seja muito bem vindo! Insira um valor de entrada e comece a controlar os seus gastos.";
         mensagemStatus.style.fontSize = "0.6em ";
-        return;
-    } else {
-        mensagemStatus.textContent = "vamos lá!";
+        cardClasificacao.style.background = "#1ba7fe";
+    
+    }
+
+   else if (totalSaidas > totalEntradas) {
+        mensagemStatus.textContent = "🚨 Cuidado você já está com saldo negativo.";
+        cardClasificacao.style.background = "red";
+    }
+
+    // aqui ok------------------------------------------
+    else if (totalEntradas > 0) {
+        mensagemStatus.textContent = "Vamos lá!";
+        cardClasificacao.style.background = "#1ba7fe";
+
+        // aqui ok -----------------------------------------
+    } else if (totalEntradas === 0 && totalSaidas > 0) {
+        mensagemStatus.textContent =
+            "ATENÇÃO! ⚠️ Você tem gastos mas ainda não registrou entradas.";
+        cardClasificacao.style.background = "red";
     }
 }
 
 const camposEntrada = document.querySelectorAll("input");
 
 const iconTipo = document.querySelector(".fa-solid");
-
-let totalEntradas = 0;
-let totalSaidas = 0;
-let totalGeral = 0;
 
 function registraTransacao() {
     const tipo = selectTipo.value;
@@ -68,7 +82,7 @@ function registraTransacao() {
         inputData.style.outline = "solid 2px transparent";
         inputData.style.outlineColor = "red";
 
-        mensagem.textContent = "*Preencha todos os campos*";
+        mensagem.textContent = "*Insira os valores*";
         mensagem.style.color = "red";
         setTimeout(() => {
             mensagem.textContent = "";
@@ -128,15 +142,15 @@ function registraTransacao() {
         }, 1000);
     }
 
-    let iconTipo
+    let iconTipo;
 
     if (tipo === "entrada") {
-        iconTipo = "fa-solid fa-circle-arrow-up seta-entrada"
+        iconTipo = "fa-solid fa-circle-arrow-up seta-entrada";
         totalEntradas += valor;
         totalGeral += valor;
         cardEntradaSpan.textContent = totalEntradas.toFixed(2);
     } else if (tipo === "saida") {
-        iconTipo = "fa-solid fa-circle-arrow-down seta-saida"
+        iconTipo = "fa-solid fa-circle-arrow-down seta-saida";
         totalSaidas += valor;
         totalGeral -= valor;
     }
@@ -168,4 +182,5 @@ function registraTransacao() {
                         </td>
                         <td><i class="fa-solid fa-trash"></i></td>
                     </tr>`;
+    mostraMensagemStatus();
 }
