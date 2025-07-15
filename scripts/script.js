@@ -1,3 +1,9 @@
+// dados da página inicial
+const nomeDoUsuario = document.getElementById("nome-user")
+const botaoEntrar = document.getElementById("btn")
+// ------------------------------------------------------------
+
+const mensagemTitulo = document.getElementById("mensagem-titulo")
 const mensagem = document.querySelector(".mensagem");
 const inputDescricao = document.getElementById("desc");
 const inputValor = document.getElementById("valor");
@@ -8,9 +14,18 @@ const saida = document.getElementById("saida");
 const total = document.getElementById("total");
 const cardEntradaSpan = document.getElementById("entrada");
 
+
 document.addEventListener("DOMContentLoaded", function () {
     mostraMensagemStatus();
+    mostraMensagemTitulo()
 });
+
+function mostraMensagemTitulo(){
+const nome =  nomeDoUsuario.value.trim()
+mensagemTitulo.textContent = `Olá ${nome} controle seus gastos com eficiência.`
+}
+
+
 
 function concluir() {
     registraTransacao();
@@ -118,12 +133,10 @@ function mostraMensagemStatus() {
             corDoTexto = "white";
             emoji = "👌";
         } else {
-            textoPrincipal = `EXCELENTE! Você gastou ${porcentagemDeGastos.toFixed(
-                1
-            )}% das suas entradas.`;
+            textoPrincipal = "Fique tranquilo, vou te ajudar a monitorar as suas finanças."
             corDoCard = "#28a745";
             corDoTexto = "white";
-            emoji = "✅";
+          
         }
     }
     mensagemStatus.textContent = `${emoji} ${textoPrincipal}`;
@@ -254,3 +267,4 @@ function registraTransacao() {
                     </tr>`;
     mostraMensagemStatus();
 }
+
