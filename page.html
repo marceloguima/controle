@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./style.css" />
+        <!-- cdn font-awsome para os ícones -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        />
+
+        <title>Controle Total</title>
+    </head>
+    <body>
+        <h1>Controle seus gastos com mais facilidade!</h1>
+
+        <main>
+            <div class="saldo-resumo">
+                <div class="entrada">
+                     <p>Entrada: R$ <span id="entrada">0.0</span></p>
+                </div>
+
+                <div class="saida">
+                    <p>Saída: R$ <span id="saida">0.0</span></p>
+                </div>
+                <div class="total">
+                      <p>Total: R$ <span id="total">0.0</span></p>
+                </div>
+                <div class="selo-classificacao">
+                    <p id="msg-status-user"></p>
+                   
+         
+                </div>
+            </div>
+
+            <p class="mensagem"></p>
+
+            <div class="campos-entrada">
+                <div class="descricao">
+                    <label for="desc">Descrição</label>
+                    <input type="text" placeholder="Ex: Aluguel" id="desc" />
+                </div>
+
+                <div class="valor">
+                    <label for="desc">Valor</label>
+                    <input type="number" placeholder="Ex: 800" id="valor" />
+                </div>
+
+                <div class="data">
+                    <label for="data">Data</label>
+                    <input type="date" id="data" />
+                </div>
+
+                <div class="tipo-e-btn">
+                    <div class="div-tipo">
+                        <label for="tipo">Tipo</label>
+                        <select name="tipo" id="tipo">
+                            <option value="entrada">Entrada</option>
+                            <option value="saida">Saída</option>
+                        </select>
+                    </div>
+                    <button onclick="concluir()">Concluir</button>
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Descrição</th>
+                        <th>Valor</th>
+                        <th>Data</th>
+                        <th>Tipo</th>
+                        <th>Opção</th>
+                    </tr>
+                </thead>
+
+                <tbody id="corpo-tabela">
+     <!-- ------------------------------dados vindo do js---------------------- -->
+                </tbody>
+            </table>
+        </main>
+
+        <script src="./scripts/script.js"></script>
+    </body>
+</html>

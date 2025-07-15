@@ -27,39 +27,109 @@ function limpaCampo() {
 let totalEntradas = 0;
 let totalSaidas = 0;
 let totalGeral = 0;
-const cardClasificacao = document.querySelector(".selo-classificacao");
+const cardClassificacao = document.querySelector(".selo-classificacao");
 
 function mostraMensagemStatus() {
     const mensagemStatus = document.getElementById("msg-status-user");
     const valorEntradaAtual = parseFloat(cardEntradaSpan.textContent);
 
-    // const porcentagemDeGastos = (saida / valorEntradaAtual) * 100;
-
-    // aqui ok-----------------------------------
-    if (valorEntradaAtual === 0 && totalGeral === 0 && totalSaidas === 0) {
-        mensagemStatus.textContent =
-            "Olá, 👍 seja muito bem vindo! Insira um valor de entrada e comece a controlar os seus gastos.";
-        mensagemStatus.style.fontSize = "0.6em ";
-        cardClasificacao.style.background = "#1ba7fe";
-    
+    if (
+        !mensagemStatus ||
+        !cardClassificacao ||
+        !cardEntradaSpan ||
+        !saida ||
+        !total
+    ) {
+        console.error(
+            "Erro: Um ou mais elementos DOM necessários para mostraMensagemStatus não foram encontrados."
+        );
+        return;
     }
 
-   else if (totalSaidas > totalEntradas) {
-        mensagemStatus.textContent = "🚨 Cuidado você já está com saldo negativo.";
-        cardClasificacao.style.background = "red";
-    }
+    let textoPrincipal = "";
+    let corDoCard = "";
+    let corDoTexto = "#000"; //padrão
+    let emoji = "";
+    let fontSize = "1em"; //padrão
 
-    // aqui ok------------------------------------------
-    else if (totalEntradas > 0) {
-        mensagemStatus.textContent = "Vamos lá!";
-        cardClasificacao.style.background = "#1ba7fe";
+    if (totalGeral < 0) {
+        textoPrincipal = "🚨 Cuidado você já está com saldo negativo.";
+        // cardClassificacao.style.background = "red";
+        // cardClassificacao.style.color = "#fff"
+        corDoCard = "red";
+        corDoTexto = "#fff";
+    } else if (totalGeral === 0 && (totalEntradas > 0 || totalSaidas > 0)) {
+        // mensagemStatus.textContent = "Ops!😬 Agora você ficou sem saldo."
+        //  cardClassificacao.style.background = "orange";
+        textoPrincipal = "Ops! Agora você ficou sem saldo.";
+        corDoCard = "orange";
+        corDoTexto = "black";
+        emoji = "😬";
+    } else if (totalEntradas > 0 && totalSaidas > totalEntradas) {
+        textoPrincipal =
+            "CUIDADO! Você já gastou mais do que ganhou neste período.";
+        corDoCard = "red";
+        corDoTexto = "white";
+        emoji = "⚠️";
+    } // O usuário está gastando, mas não informou nenhuma entrada.
+    else if (totalEntradas === 0 && totalSaidas > 0) {
+        textoPrincipal =
+            "ATENÇÃO! Você tem gastos mas ainda não registrou entradas.";
+        corDoCard = "red";
+        corDoTexto = "white";
+        emoji = "⚠️";
+    } else if (totalEntradas === 0 && totalSaidas === 0 && totalGeral === 0) {
+        textoPrincipal =
+            "Olá, seja muito bem vindo(a)! Insira um valor para começar.";
+        corDoCard = "#1ba7fe";
+        corDoTexto = "white";
+        emoji = "👋";
+        fontSize = "0.8em";
+    } else {
+        // mensagens baseadas em percentual gastos
+        const porcentagemDeGastos = (totalSaidas / totalEntradas) * 100; // Cálculo seguro aqui
 
-        // aqui ok -----------------------------------------
-    } else if (totalEntradas === 0 && totalSaidas > 0) {
-        mensagemStatus.textContent =
-            "ATENÇÃO! ⚠️ Você tem gastos mas ainda não registrou entradas.";
-        cardClasificacao.style.background = "red";
+        if (porcentagemDeGastos > 90) {
+            textoPrincipal = `ALERTA! Você gastou ${porcentagemDeGastos.toFixed(
+                1
+            )}% das suas entradas.`;
+            corDoCard = "#fd7e14";
+            corDoTexto = "white";
+            emoji = "🚨";
+        } else if (porcentagemDeGastos > 70) {
+            textoPrincipal = `ATENÇÃO! Você gastou ${porcentagemDeGastos.toFixed(
+                1
+            )}% das suas entradas.`;
+            corDoCard = "#ffc107";
+            corDoTexto = "black";
+            emoji = "⚠️";
+        } else if (porcentagemDeGastos > 50) {
+            textoPrincipal = `MODERADO! Você gastou ${porcentagemDeGastos.toFixed(
+                1
+            )}% das suas entradas.`;
+            corDoCard = "#007bff";
+            corDoTexto = "white";
+            emoji = "👍";
+        } else if (porcentagemDeGastos > 30) {
+            textoPrincipal = `BOM! Você gastou ${porcentagemDeGastos.toFixed(
+                1
+            )}% das suas entradas.`;
+            corDoCard = "#28a745";
+            corDoTexto = "white";
+            emoji = "👌";
+        } else {
+            textoPrincipal = `EXCELENTE! Você gastou ${porcentagemDeGastos.toFixed(
+                1
+            )}% das suas entradas.`;
+            corDoCard = "#28a745";
+            corDoTexto = "white";
+            emoji = "✅";
+        }
     }
+    mensagemStatus.textContent = `${emoji} ${textoPrincipal}`;
+    mensagemStatus.style.color = corDoTexto;
+    cardClassificacao.style.background = corDoCard;
+    mensagemStatus.style.fontSize = fontSize;
 }
 
 const camposEntrada = document.querySelectorAll("input");
