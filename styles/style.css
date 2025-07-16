@@ -207,6 +207,15 @@ td {
 
 
 @media(max-width: 1200px){
+main{
+    display: grid;
+  
+}
+
+.saldo-resumo{
+   
+}
+
     .tipo-e-btn{
         flex-direction: column;
     }
@@ -218,12 +227,3 @@ td {
         width: 100%;
     }
 }
-/* 
-@media(max-width:1000px){
-    .saldo-resumo{
-      display: grid;
-      grid-template-columns: 400px 400px;
-      grid-template-rows: 1fr 1fr;
-     
-    }
-} */

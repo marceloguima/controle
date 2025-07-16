@@ -12,7 +12,7 @@ const cardEntradaSpan = document.getElementById("entrada");
 
 const nomeCadastrado = localStorage.getItem("nome")
 
-mensagemTitulo.textContent = `Olá ${nomeCadastrado}`
+
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -68,7 +68,7 @@ function mostraMensagemStatus() {
     let fontSize = "1em"; //padrão
 
     if (totalGeral < 0) {
-        textoPrincipal = "🚨 Cuidado você já está com saldo negativo.";
+        textoPrincipal = `🚨 Cuidado ${nomeCadastrado}! você está com saldo negativo.`;
         // cardClassificacao.style.background = "red";
         // cardClassificacao.style.color = "#fff"
         corDoCard = "red";
@@ -82,20 +82,20 @@ function mostraMensagemStatus() {
         emoji = "😬";
     } else if (totalEntradas > 0 && totalSaidas > totalEntradas) {
         textoPrincipal =
-            "CUIDADO! Você já gastou mais do que ganhou neste período.";
+            `CUIDADO ${nomeCadastrado}! Você já gastou mais do que ganhou neste período.`;
         corDoCard = "red";
         corDoTexto = "white";
         emoji = "⚠️";
     } // O usuário está gastando, mas não informou nenhuma entrada.
     else if (totalEntradas === 0 && totalSaidas > 0) {
         textoPrincipal =
-            "ATENÇÃO! Você tem gastos mas ainda não registrou entradas.";
+            `ATENÇÃO ${nomeCadastrado}! Você tem gastos mas ainda não registrou entradas.`;
         corDoCard = "red";
         corDoTexto = "white";
         emoji = "⚠️";
     } else if (totalEntradas === 0 && totalSaidas === 0 && totalGeral === 0) {
         textoPrincipal =
-            "Olá, seja muito bem vindo(a)! Insira um valor para começar.";
+        `Olá ${nomeCadastrado}, seja muito bem vindo(a)! Insira um valor para começar.`;
         corDoCard = "#1ba7fe";
         corDoTexto = "white";
         emoji = "👋";
@@ -126,14 +126,14 @@ function mostraMensagemStatus() {
             corDoTexto = "white";
             emoji = "👍";
         } else if (porcentagemDeGastos > 30) {
-            textoPrincipal = `BOM! Você gastou ${porcentagemDeGastos.toFixed(
+            textoPrincipal = `BOM ${nomeCadastrado}! Você já gastou ${porcentagemDeGastos.toFixed(
                 1
             )}% das suas entradas.`;
             corDoCard = "#28a745";
             corDoTexto = "white";
-            emoji = "👌";
+            // emoji = "👌";
         } else {
-            textoPrincipal = "Fique tranquilo, vou te ajudar a monitorar as suas finanças."
+            textoPrincipal = `Fique tranquilo ${nomeCadastrado}, vou te ajudar a monitorar as suas finanças.`
             corDoCard = "#28a745";
             corDoTexto = "white";
           

@@ -9,13 +9,13 @@ const form = document.querySelector(".form-nome")
 function salvaDados(){
 const nameUser = nomeDoUsuario.value.trim()
 localStorage.setItem("nome", nameUser)
-
 }
 
-form.addEventListener("click", (evento) =>{
+form.addEventListener("submit", (evento) =>{
 evento.preventDefault()
 verificaCampoVazio()
 salvaDados()
+paginaPrincipal()
 
 })
 
@@ -27,9 +27,20 @@ function verificaCampoVazio(){
         setTimeout(()=>{
              nomeDoUsuario.classList.remove("active")
         },1500)
+       
+
+    }else{
+        setTimeout(()=>{
+            window.location.href = "./pages/page.html"
+
+        },100)
     }
 
    
 }
+
+// function paginaPrincipal(){
+//      window.location.href = "./pages/page.html"
+// }
 
 
