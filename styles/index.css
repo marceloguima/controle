@@ -24,7 +24,7 @@ p {
     margin-bottom: 40px;
 }
 
-.campo-nome {
+.form-nome {
     width: 320px;
     display: flex;
     flex-direction: column;
@@ -35,7 +35,7 @@ label {
 }
 
 input,
-a{
+button{
     padding: 10px;
     border-radius: 10px;
     border: none;
@@ -44,17 +44,26 @@ a{
     max-width: 100%;
 }
 
-a {
+.active::placeholder{
+    color: red;
+    font-weight: 600;
+}
+
+.active{
+outline: solid 2px;
+    outline-color: red;
+}
+
+button{
     margin-top: 30px;
     background-color: #1ba7fe;
     color: #fff;
     font-weight: 600;
     cursor: pointer;
-    text-align: center;
-    text-decoration: none;
+ 
 }
 
-a:hover{
+button:hover{
      background-color: #028adf;
 }
 

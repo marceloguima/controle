@@ -1,7 +1,3 @@
-// dados da página inicial
-const nomeDoUsuario = document.getElementById("nome-user")
-const botaoEntrar = document.getElementById("btn")
-// ------------------------------------------------------------
 
 const mensagemTitulo = document.getElementById("mensagem-titulo")
 const mensagem = document.querySelector(".mensagem");
@@ -13,6 +9,10 @@ const inputData = document.getElementById("data");
 const saida = document.getElementById("saida");
 const total = document.getElementById("total");
 const cardEntradaSpan = document.getElementById("entrada");
+
+const nomeCadastrado = localStorage.getItem("nome")
+
+mensagemTitulo.textContent = `Olá ${nomeCadastrado}`
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -267,4 +267,9 @@ function registraTransacao() {
                     </tr>`;
     mostraMensagemStatus();
 }
+
+
+
+
+
 
