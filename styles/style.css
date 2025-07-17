@@ -42,7 +42,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     box-shadow: 4px 4px 4px #767676;
     text-align: center;
 }
@@ -97,7 +97,9 @@ p{
 
 .mensagem {
     padding: 20px;
-    height: 60px;
+    height: 30px;
+    text-align: center;
+    margin-bottom: 5px
 }
 
 
@@ -203,15 +205,15 @@ td {
     main{
     
         padding: 0 3%;
-        grid-column: 1 / 2;
+        
     }
 
 .saldo-resumo{
-   grid-template-columns: 400px 400px;
+   grid-template-columns: auto auto;
  grid-template-rows: 70px 100px 80px;
-  /* justify-items: center; */
   
-   gap: 40px;
+ 
+   gap: 20px;
    width: 100%;
    grid-column: 1 / 2;
   
@@ -227,50 +229,58 @@ td {
 .entrada{
     grid-column: 1 / 2;
     width: 100%;
+    height: 60px;
+
 }
 
 .saida{
-    grid-column: 2 / 4;
+    grid-column: 2 / 3;
     width: 100%;
+    height: 60px;
 }
 
 .total{
     width: 100%;
+    height: 60px;
     grid-column: 1 / 3;
 }
 
 .campos-entrada{
-grid-template-columns: 400px 400px;
+grid-template-columns: auto auto;
 grid-template-rows: repeat(3, 80px);
 grid-column: 1 / 2;
 justify-items: center;
+gap: 20px;
 }
 
 .descricao{
     grid-column: 1 / 2;
-    width: 100%;
+    
 }
 
 .data{
     grid-column: 1 / 2;
-    width: 100%;
+  
 }
 
 .valor{
  grid-column: 2 / 3;
- width: 100%;
+ 
 
 }
 
 .div-tipo{
     grid-column:  2 / 3;
-    width: 100%;
+    
 }
 
+input, select{
+    height: 50px;
+}
 
     .tipo-e-btn{
         flex-direction: column;
-        width: 100%;
+        
         position: relative;
     }
 
@@ -278,10 +288,10 @@ justify-items: center;
         width: 100%;
     }
     button{
-        width: 80vw;
+        height: 50px;
+        width: 385px;
         position: absolute;
         top: 100px;
-        margin: 0 auto;
-
+      font-size: 1.2rem;
     }
 }
