@@ -16,25 +16,26 @@ h1 {
     text-align: center;
 }
 main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100vw;
+    display: grid;
+    width: 100%;
     max-width: 1300px;
     margin-top: 40px;
     padding: 0 5%;
 }
 
-.saldo-resumo {
-    display: flex;
+.saldo-resumo, .campos-entrada {
     width: 100%;
+    display: grid;
     justify-content: space-between;
+    grid-template-columns: auto auto auto auto;
+    
 }
+
 
 .entrada,
 .saida,
 .total, .selo-classificacao {
-    width: 20%;
+    width: 180px;
     height: 100px;
     border: solid 1px #cfcfcf;
     border-radius: 10px;
@@ -60,7 +61,7 @@ main {
 
 .selo-classificacao{
 background: #5fec6d;
-/* background: #d40700; */
+
 
 padding: 10px;
 text-align: center;
@@ -76,9 +77,7 @@ p{
     font-weight: 600;
 }
 
-.selo-classificacao img{
-    width: 20px;
-}
+
 
 
 .selo-classificacao span{
@@ -87,34 +86,27 @@ p{
     height: 80px;
 }
 
-
+/* 
 .campos-entrada {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-}
+} */
 
 .mensagem {
     padding: 20px;
     height: 60px;
 }
 
-.descricao,
-.valor,
-.data,
-.div-tipo {
-    display: flex;
-    flex-direction: column;
-}
 
 .descricao, .valor, .data {
-    width: 20%;
+    width: 180px;
 }
 
 .tipo-e-btn{
-    width: 20%;
+    width: 180px;
     display: flex;
     align-items:end ;
     gap: 10px;
@@ -206,24 +198,90 @@ td {
 }
 
 
-@media(max-width: 1200px){
-main{
-    display: grid;
+@media(max-width: 900px){
+
+    main{
+    
+        padding: 0 3%;
+        grid-column: 1 / 2;
+    }
+
+.saldo-resumo{
+   grid-template-columns: 400px 400px;
+ grid-template-rows: 70px 100px 80px;
+  /* justify-items: center; */
+  
+   gap: 40px;
+   width: 100%;
+   grid-column: 1 / 2;
   
 }
 
-.saldo-resumo{
-   
+.selo-classificacao{
+    order: -1;
+    width: 100%;
+    height: 100%;
+    grid-column: 1 / 3;
 }
+
+.entrada{
+    grid-column: 1 / 2;
+    width: 100%;
+}
+
+.saida{
+    grid-column: 2 / 4;
+    width: 100%;
+}
+
+.total{
+    width: 100%;
+    grid-column: 1 / 3;
+}
+
+.campos-entrada{
+grid-template-columns: 400px 400px;
+grid-template-rows: repeat(3, 80px);
+grid-column: 1 / 2;
+justify-items: center;
+}
+
+.descricao{
+    grid-column: 1 / 2;
+    width: 100%;
+}
+
+.data{
+    grid-column: 1 / 2;
+    width: 100%;
+}
+
+.valor{
+ grid-column: 2 / 3;
+ width: 100%;
+
+}
+
+.div-tipo{
+    grid-column:  2 / 3;
+    width: 100%;
+}
+
 
     .tipo-e-btn{
         flex-direction: column;
+        width: 100%;
+        position: relative;
     }
 
     .div-tipo{
         width: 100%;
     }
     button{
-        width: 100%;
+        width: 80vw;
+        position: absolute;
+        top: 100px;
+        margin: 0 auto;
+
     }
 }
