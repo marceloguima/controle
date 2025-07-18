@@ -1,5 +1,4 @@
-
-const mensagemTitulo = document.getElementById("mensagem-titulo")
+const mensagemTitulo = document.getElementById("mensagem-titulo");
 const mensagem = document.querySelector(".mensagem");
 const inputDescricao = document.getElementById("desc");
 const inputValor = document.getElementById("valor");
@@ -10,22 +9,20 @@ const saida = document.getElementById("saida");
 const total = document.getElementById("total");
 const cardEntradaSpan = document.getElementById("entrada");
 
-const nomeCadastrado = localStorage.getItem("nome")
-
-
-
+const nomeCadastrado = localStorage.getItem("nome");
 
 document.addEventListener("DOMContentLoaded", function () {
     mostraMensagemStatus();
-    mostraMensagemTitulo()
+
+    // Define a data de hoje como padrão no campo de data
+    const hoje = new Date().toISOString().split("T")[0];
+    inputData.value = hoje;
 });
 
-function mostraMensagemTitulo(){
-const nome =  nomeDoUsuario.value.trim()
-mensagemTitulo.textContent = `Olá ${nome} controle seus gastos com eficiência.`
+function mostraMensagemTitulo() {
+    const nome = nomeDoUsuario.value.trim();
+    mensagemTitulo.textContent = `Olá ${nome} controle seus gastos com eficiência.`;
 }
-
-
 
 function concluir() {
     registraTransacao();
@@ -79,28 +76,25 @@ function mostraMensagemStatus() {
         corDoTexto = "black";
         emoji = "😬";
     } else if (totalEntradas > 0 && totalSaidas > totalEntradas) {
-        textoPrincipal =
-            `CUIDADO ${nomeCadastrado}! Você já gastou mais do que ganhou neste período.`;
+        textoPrincipal = `CUIDADO ${nomeCadastrado}! Você já gastou mais do que ganhou neste período.`;
         corDoCard = "red";
         corDoTexto = "white";
         emoji = "⚠️";
     } // O usuário está gastando, mas não informou nenhuma entrada.
     else if (totalEntradas === 0 && totalSaidas > 0) {
-        textoPrincipal =
-            `ATENÇÃO ${nomeCadastrado}! Você tem gastos mas ainda não registrou entradas.`;
+        textoPrincipal = `ATENÇÃO ${nomeCadastrado}! Você tem gastos mas ainda não registrou entradas.`;
         corDoCard = "red";
         corDoTexto = "white";
         emoji = "⚠️";
     } else if (totalEntradas === 0 && totalSaidas === 0 && totalGeral === 0) {
-        textoPrincipal =
-        `Olá ${nomeCadastrado}, seja muito bem vindo(a)! Insira um valor para começar.`;
+        textoPrincipal = `Olá ${nomeCadastrado}, seja muito bem vindo(a)! Insira um valor para começar.`;
         corDoCard = "#1ba7fe";
         corDoTexto = "white";
         emoji = "👋";
         fontSize = "0.8em";
     } else {
         // mensagens baseadas em percentual gastos
-        const porcentagemDeGastos = (totalSaidas / totalEntradas) * 100; 
+        const porcentagemDeGastos = (totalSaidas / totalEntradas) * 100;
 
         if (porcentagemDeGastos > 90) {
             textoPrincipal = `Cuidado ${nomeCadastrado} Você já gastou ${porcentagemDeGastos}% das suas entradas.`;
@@ -118,17 +112,14 @@ function mostraMensagemStatus() {
             corDoTexto = "white";
             emoji = "👍";
         } else if (porcentagemDeGastos > 30) {
-            textoPrincipal = `Oi ${nomeCadastrado} Você gastou ${porcentagemDeGastos
-
-            }% das suas entradas.`;
+            textoPrincipal = `Oi ${nomeCadastrado} Você gastou ${porcentagemDeGastos}% das suas entradas.`;
             corDoCard = "#28a745";
             corDoTexto = "white";
             // emoji = "👌";
         } else {
-            textoPrincipal = `Fique tranquilo ${nomeCadastrado}, vou te ajudar a monitorar as suas finanças.`
+            textoPrincipal = `Fique tranquilo ${nomeCadastrado}, vou te ajudar a monitorar as suas finanças.`;
             corDoCard = "#28a745";
             corDoTexto = "white";
-          
         }
     }
     mensagemStatus.textContent = `${emoji} ${textoPrincipal}`;
@@ -187,21 +178,7 @@ function registraTransacao() {
             inputData.style.outlineColor = "transparent";
         }, 2000);
         return;
-    }
-
-    if (data === "") {
-        mensagem.textContent = "*Não é possível fazer um controle sem a data*";
-        mensagem.style.color = "red";
-
-        inputData.style.outline = "solid 2px transparent";
-        inputData.style.outlineColor = "red";
-
-        setTimeout(() => {
-            mensagem.textContent = "";
-            inputData.style.outlineColor = "transparent";
-        }, 2000);
-        return;
-    } else {
+    }else {
         inputDescricao.style.outlineColor = "green";
         inputValor.style.outlineColor = "green";
         inputData.style.outlineColor = "green";
@@ -217,6 +194,8 @@ function registraTransacao() {
         }, 1000);
     }
 
+
+  
     let iconTipo;
 
     if (tipo === "entrada") {
@@ -259,9 +238,3 @@ function registraTransacao() {
                     </tr>`;
     mostraMensagemStatus();
 }
-
-
-
-
-
-

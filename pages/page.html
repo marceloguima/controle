@@ -18,19 +18,17 @@
         <main>
             <div class="saldo-resumo">
                 <div class="entrada">
-                     <p>Entrada: R$ <span id="entrada">0.0</span></p>
+                    <p>Entrada: R$ <span id="entrada">0.0</span></p>
                 </div>
 
                 <div class="saida">
                     <p>Saída: R$ <span id="saida">0.0</span></p>
                 </div>
                 <div class="total">
-                      <p>Total: R$ <span id="total">0.0</span></p>
+                    <p>Total: R$ <span id="total">0.0</span></p>
                 </div>
                 <div class="selo-classificacao">
                     <p id="msg-status-user"></p>
-                   
-         
                 </div>
             </div>
 
@@ -52,16 +50,15 @@
                     <input type="date" id="data" />
                 </div>
 
-                <div class="tipo-e-btn">
-                    <div class="div-tipo">
-                        <label for="tipo">Tipo</label>
-                        <select name="tipo" id="tipo">
-                            <option value="entrada">Entrada</option>
-                            <option value="saida">Saída</option>
-                        </select>
-                    </div>
-                    <button onclick="concluir()">Concluir</button>
+                <div class="div-tipo">
+                    <label for="tipo">Tipo</label>
+                    <select name="tipo" id="tipo">
+                        <option value="entrada">Entrada</option>
+                        <option value="saida">Saída</option>
+                    </select>
                 </div>
+
+                <button onclick="concluir()">Concluir</button>
             </div>
 
             <table>
@@ -76,7 +73,7 @@
                 </thead>
 
                 <tbody id="corpo-tabela">
-     <!-- ------------------------------dados vindo do js---------------------- -->
+                    <!-- ------------------------------dados vindo do js---------------------- -->
                 </tbody>
             </table>
         </main>
