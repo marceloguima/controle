@@ -178,7 +178,7 @@ function registraTransacao() {
             inputData.style.outlineColor = "transparent";
         }, 2000);
         return;
-    }else {
+    } else {
         inputDescricao.style.outlineColor = "green";
         inputValor.style.outlineColor = "green";
         inputData.style.outlineColor = "green";
@@ -194,8 +194,6 @@ function registraTransacao() {
         }, 1000);
     }
 
-
-  
     let iconTipo;
 
     if (tipo === "entrada") {
@@ -225,16 +223,12 @@ function registraTransacao() {
     let tbody = document.getElementById("corpo-tabela");
 
     tbody.innerHTML += `<tr>
-                    <td>${descricao}</td>
-                        <td>R$ ${valor.toFixed(2)}</td>
-                        <td>${data}</td>
-                        <td>
+                             <td><i class="${iconTipo}"></i>${descricao}</td>
+                             <td>R$ ${valor.toFixed(2)}</td>
+                             <td>${data}</td>
+                             <td><i class="fa-solid fa-trash"></i></td>
+                        </tr>`;
                       
-                            <i
-                                class="${iconTipo}"
-                            ></i>
-                        </td>
-                        <td><i class="fa-solid fa-trash"></i></td>
-                    </tr>`;
+                   
     mostraMensagemStatus();
 }

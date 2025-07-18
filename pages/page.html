@@ -13,19 +13,22 @@
         <title>Controle Total</title>
     </head>
     <body>
-        <h1 id="mensagem-titulo"></h1>
+        <h1 id="titulo">Painel de Controle Financeiro</h1>
 
         <main>
             <div class="saldo-resumo">
                 <div class="entrada">
-                    <p>Entrada: R$ <span id="entrada">0.0</span></p>
+                    <p><i class="fa-solid fa-arrow-up"></i> Entrada</p>
+                    <span id="entrada">R$ 0.0</span>
                 </div>
 
                 <div class="saida">
-                    <p>Saída: R$ <span id="saida">0.0</span></p>
+                    <p><i class="fa-solid fa-arrow-down"></i> Saída</p>
+                     <span id="saida">R$ 0.0</span>
                 </div>
                 <div class="total">
-                    <p>Total: R$ <span id="total">0.0</span></p>
+                    <p><i class="fa-solid fa-calculator"></i> Total</p>
+                    <span id="total">R$ 0.0</span>
                 </div>
                 <div class="selo-classificacao">
                     <p id="msg-status-user"></p>
@@ -37,12 +40,12 @@
             <div class="campos-entrada">
                 <div class="descricao">
                     <label for="desc">Descrição</label>
-                    <input type="text" placeholder="Ex: Aluguel" id="desc" />
+                    <input type="text" placeholder="Ex: Salário" id="desc" />
                 </div>
 
                 <div class="valor">
                     <label for="desc">Valor</label>
-                    <input type="number" placeholder="Ex: 800" id="valor" />
+                    <input type="number" placeholder="Ex: 3.000" id="valor" />
                 </div>
 
                 <div class="data">
@@ -69,8 +72,7 @@
                         <th>Descrição</th>
                         <th>Valor</th>
                         <th>Data</th>
-                        <th>Tipo</th>
-                        <th>Opção</th>
+                        <th>Excluir</th>
                     </tr>
                 </thead>
 
