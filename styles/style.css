@@ -290,3 +290,9 @@ td {
        justify-self: center;
     }
 }
+
+    @media (max-width: 900px){
+        button{
+            width: 100%;
+        }
+    }
