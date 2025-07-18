@@ -47,7 +47,7 @@ main {
     align-items: center;
     justify-content: center;
     font-size: 1.1rem;
-    box-shadow: 4px 4px 4px #767676;
+    box-shadow: 0 4px 4px #767676;
     text-align: center;
 }
 
@@ -137,7 +137,7 @@ button {
     background: #1ba7fe;
     color: #fff;
     font-weight: 600;
-    box-shadow: 4px 4px 4px #767676;
+    box-shadow: 0 4px 4px #767676;
     cursor: pointer;
 }
 
@@ -152,7 +152,7 @@ input, select {
     border-radius: 10px;
     width: 100%;
 
-    box-shadow: 4px 4px 4px #767676;
+    box-shadow: 0 4px 4px #767676;
 }
 
 input:focus,
@@ -291,7 +291,7 @@ td {
     }
 }
 
-    @media (max-width: 900px){
+    @media (max-width: 450px){
         button{
             width: 100%;
         }

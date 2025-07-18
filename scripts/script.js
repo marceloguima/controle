@@ -97,27 +97,27 @@ function mostraMensagemStatus() {
         const porcentagemDeGastos = (totalSaidas / totalEntradas) * 100;
 
         if (porcentagemDeGastos > 90) {
-            textoPrincipal = `Cuidado ${nomeCadastrado} Você já gastou ${porcentagemDeGastos}% das suas entradas.`;
+            textoPrincipal = `Cuidado! ${nomeCadastrado}, Você já gastou ${porcentagemDeGastos}% das suas entradas.`;
             corDoCard = "#fd7e14";
             corDoTexto = "white";
             emoji = "🚨";
         } else if (porcentagemDeGastos > 70) {
-            textoPrincipal = `Ei ${nomeCadastrado} Você já gastou ${porcentagemDeGastos}% das suas entradas.`;
+            textoPrincipal = `Ei! ${nomeCadastrado}, Você já gastou ${porcentagemDeGastos}% das suas entradas.`;
             corDoCard = "#ffc107";
             corDoTexto = "black";
             emoji = "⚠️";
         } else if (porcentagemDeGastos > 50) {
-            textoPrincipal = `Você já gastou ${porcentagemDeGastos}% das suas entradas.`;
+            textoPrincipal = `Oie, você já gastou ${porcentagemDeGastos}% das suas entradas.`;
             corDoCard = "#007bff";
             corDoTexto = "white";
             emoji = "👍";
         } else if (porcentagemDeGastos > 30) {
-            textoPrincipal = `Oi ${nomeCadastrado} Você gastou ${porcentagemDeGastos}% das suas entradas.`;
+            textoPrincipal = `Oi ${nomeCadastrado}, Você gastou ${porcentagemDeGastos}% das suas entradas.`;
             corDoCard = "#28a745";
             corDoTexto = "white";
             // emoji = "👌";
         } else {
-            textoPrincipal = `Fique tranquilo ${nomeCadastrado}, vou te ajudar a monitorar as suas finanças.`;
+            textoPrincipal = `Fique tranquilo(a)${nomeCadastrado}, vou te ajudar a monitorar as suas finanças.`;
             corDoCard = "#28a745";
             corDoTexto = "white";
         }
